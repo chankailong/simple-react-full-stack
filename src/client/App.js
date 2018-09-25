@@ -3,20 +3,41 @@ import './app.css';
 import ReactImage from './react.png';
 
 export default class App extends Component {
-  state = { username: null };
+  constructor(props) {
+    super(props);
+    this.state = { message: null };
+    this.handleClickDynamodb = this.handleClickDynamodb.bind(this);
+    this.handleClickmysql = this.handleClickmysql.bind(this);
+  }
 
-  componentDidMount() {
-    fetch('/api/getUsername')
-      .then(res => res.json())
-      .then(user => this.setState({ username: user.username }));
+  handleClickDynamodb() {
+    fetch('/api/dynamodbget')
+      .then(function(response) {
+        return response.json();
+      })
+      .then( (myJson) => {
+        this.setState({ message: myJson[0].message })
+      });
+  }
+
+  handleClickmysql() {
+    fetch('/api/mysqlget')
+      .then(function(response) {
+        return response.json();
+      })
+      .then( (myJson) => {
+        this.setState({ message: myJson[0].message })
+      });
   }
 
   render() {
-    const { username } = this.state;
+    const { message } = this.state;
+    console.log(this.state)
     return (
       <div>
-        {username ? <h1>{`Hello ${username}`}</h1> : <h1>Loading.. please wait!</h1>}
-        <img src={ReactImage} alt="react" />
+        <button onClick={this.handleClickDynamodb}>Click Me (I am DynamoDB)!</button>
+        <button onClick={this.handleClickmysql}>Click Me (I am MySQLDB)!</button>
+        <div>{message}</div>
       </div>
     );
   }
