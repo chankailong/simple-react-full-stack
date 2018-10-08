@@ -245,13 +245,25 @@ This starts a server and listens on port 8080 for connections. The app responds 
 
 Above, we have modified editor configurations. Alternatively, this can be configured at the project level by following [this article](https://medium.com/@netczuk/your-last-eslint-config-9e35bace2f99).
 
-#### Docker CMD
-docker build -t simple-react-full-stack-master .
+### Dockerizing the Project
+
+Docker Build
+```docker build -t simple-react-full-stack-master .```
+
+Listing Docker Images
+```docker images```
+
+Run the Docker Image
+````docker run -d -p 8080:8080  ee2ae30b42a5```
+
+You can check the following URL for dockerizing the nodejs project.
 
 https://nodejs.org/en/docs/guides/nodejs-docker-webapp/
 
-docker run -d -p 8080:8080  ee2ae30b42a5
 
-kill all running containers with docker kill $(docker ps -q)
 
-delete all stopped containers with docker rm $(docker ps -a -q)
+kill all running containers with docker kill 
+````kill $(docker ps -q)````
+
+delete all stopped containers with docker rm 
+````rm $(docker ps -a -q)````
