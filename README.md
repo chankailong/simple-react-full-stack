@@ -254,7 +254,7 @@ Listing Docker Images
 ```docker images```
 
 Run the Docker Image
-````docker run -d -p 8080:8080  ee2ae30b42a5```
+````docker run -d -p 8080:8080  ee2ae30b42a5````
 
 You can check the following URL for dockerizing the nodejs project.
 
